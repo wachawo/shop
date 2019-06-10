@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="top-menu">
+        <div><a href="/products/">Каталог</a></div>
+        <div><a href="/cart/">Корзина</a></div>
+    </div>
+    <div>
+        {{ product.name }}<br>
+        <img src="{{ product.image }}" width="300" height="200"/><br>
+        {{ product.category }}<br>
+        {{ product.price }} Pуб.<br>
+        {{ product.stock }} Шт.<br>
+        {{ product.description }}<br>
+        {%  if product.stock < 1 %}
+            <button disabled>В корзину</button>
+        {% else %}
+            <button onclick="productAddToCart({{ product.id }});">В корзину</button>
+        {% endif %}
+    </div>
+{% endblock %}

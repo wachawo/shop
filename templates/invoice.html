@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="top-menu">
+        <div><a href="/products/">Каталог</a></div>
+        <div><a href="/cart/">Корзина</a></div>
+        <div>Подтверждение</div>
+    </div>
+    <div id="work">
+    <table>
+    <caption>Товары</caption>
+    <thead>
+        <th>Наименование</th>
+        <th>Стоимость</th>
+        <th>Количество</th>
+    </thead>
+    <tbody>
+    {% for p in products %}
+    <tr>
+        <td><a href="{{ p.link }}">{{ p.name }}</a></td>
+        <td>{{ p.price }} Руб.</td>
+        <td>{{ p.count }} Шт.</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+    <h3>{{ count }} товаров. К оплате {{ amount }} Руб.</h3>
+    <form id="invoice" action="javascript:void(0);" autocomplete="off">
+        Имя: <input type=text name="name" class="name" placeholder="Имя"/>
+        <br />
+        Телефон: <input type=text name="phone" class="phone" placeholder="+79123456789"/>
+        <br />
+        <input type=submit id="invoice_submit" value="Подтвердить" />
+    </form>
+    <div id="error"></div>
+    </div>
+{% endblock %}

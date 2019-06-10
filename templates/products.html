@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="top-menu">
+        <div>Каталог</div>
+        <div><a href="/cart/">Корзина</a></div>
+    </div>
+    <table>
+    <thead>
+    <tr>
+        <th>Наименование</th>
+        <th>Категория</th>
+        <th>Стоимость</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for p in products %}
+    <tr>
+        <td><a href="{{ p.link }}">{{ p.name }}</a></td>
+        <td>{{ p.category }}</td>
+        <td>{{ p.price }}</td>
+        <td>
+        {%  if p.stock < 1 %}
+            <button disabled>В корзину</button>
+        {% else %}
+            <button onclick="productAddToCart({{ p.id }});">В корзину</button>
+        {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+{% endblock %}

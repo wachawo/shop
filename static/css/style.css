@@ -1,0 +1,9 @@
+body {
+    color: #28384a;
+}
+div.top-menu div {
+    display: inline;
+}
+table caption {
+    text-align: left;
+}

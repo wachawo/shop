@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="top-menu">
+        <div><a href="/products/">Каталог</a></div>
+        <div>Корзина</div>
+    </div>
+    {%  if products|length == 0 %}
+        <div>
+        В вашей корзине пусто :-(
+        </div>
+    {% else %}
+        <table>
+        <caption>Товары</caption>
+        <thead>
+        <tr>
+            <th>Наименование</th>
+            <th>Стоимость</th>
+            <th>Количество</th>
+            <th>Сумма</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for p in products %}
+        <tr class="{{ p.id }}">
+            <td><a href="{{ p.link }}">{{ p.name }}</a></td>
+            <td>{{ p.price }} Руб.</td>
+            <td>{{ p.count }} Шт.</td>
+            <td><b>{{ p.amount }} Руб.</b></td>
+            <td>
+                <button onclick="productDeleteFromCart({{ p.id }});">Убрать</button>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+        <button onclick="window.location.href='/invoice/'">Оформить заказ</button>
+    {% endif %}
+{% endblock %}
