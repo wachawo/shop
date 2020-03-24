@@ -1,5 +1,5 @@
-# Интернет магазин (example)
-# Установка
+# Store (testtask with jinja2 rendering)
+# Installation
 python3 -m venv venv
 . venv/bin/activate
 pip3 install -r shop/requirements.txt
